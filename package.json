@@ -1,0 +1,9 @@
+{
+  "name": "vijaya-ravi-mahal-booking",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Vijaya Ravi Mahal A/C — venue website with live booking, Turso-backed availability, and admin dashboard.",
+  "dependencies": {
+    "@libsql/client": "^0.14.0"
+  }
+}

@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vijaya Ravi Mahal A/C – Wedding Community Hall | Ernamangalam</title>
+  <meta name="description" content="Premium wedding community hall in Ernamangalam, Thiruvannamalai. Book the finest venue for your special day." />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&family=Noto+Serif+Tamil:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <style>
+    :root {
+      --gold:       #C9943A;
+      --gold-light: #E8C97A;
+      --cream:      #FAF6EF;
+      --deep:       #1C1209;
+      --text:       #3A2E1E;
+      --muted:      #7A6A55;
+      --white:      #FFFFFF;
+      --border:     #E2D5BF;
+      --avail:      #3A7D44;
+      --booked:     #B83232;
+      --avail-bg:   #E8F5EB;
+      --booked-bg:  #FAE8E8;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .tamil body, body.tamil {
+      font-family: 'Noto Serif Tamil', 'Inter', sans-serif;
+    }
+    
+    /* ── LANG TOGGLE ── */
+    .lang-bar {
+      background: var(--deep);
+      padding: 8px 24px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 12px;
+    }
+    .lang-bar span { color: var(--muted); font-size: 13px; }
+    .lang-btn {
+      background: none;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      padding: 4px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .lang-btn.active {
+      background: var(--gold);
+      color: var(--deep);
+      font-weight: 600;
+    }
+    .lang-btn:hover:not(.active) { background: rgba(201,148,58,.15); }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(28,18,9,.96);
+      backdrop-filter: blur(8px);
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 64px;
+      border-bottom: 1px solid rgba(201,148,58,.25);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold);
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: .5px;
+    }
+    .nav-logo span { color: var(--gold-light); font-size: 13px; display: block; font-family: 'Inter', sans-serif; font-weight: 300; letter-spacing: 2px; }
+    .nav-links { display: flex; gap: 28px; list-style: none; }
+    .nav-links a { color: #C8B99A; text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: .5px; transition: color .2s; }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-cta {
+      background: var(--gold);
+      color: var(--deep);
+      padding: 8px 20px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .2s;
+    }
+    .nav-cta:hover { background: var(--gold-light); }
+
+    /* hamburger */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); border-radius: 2px; transition: .3s; }
+
+    /*******************/
+     /* ── TOP BANNER WITH IMAGE & DATE/TIME ── */
+    .top-banner {
+      position: relative;
+      width: 100%;
+      min-height: 120px;
+      background: linear-gradient(135deg, #1C1209 0%, #2E1D0A 100%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 32px;
+      border-bottom: 2px solid var(--gold);
+      gap: 30px;
+    }
+
+    .banner-logo-section {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .banner-logo img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      border-radius: 8px;
+      border: 2px solid var(--gold);
+      box-shadow: 0 4px 12px rgba(201, 148, 58, 0.3);
+      transition: transform 0.3s ease;
+    }
+
+    .banner-logo img:hover {
+      transform: scale(1.05);
+    }
+
+    .banner-text h2 {
+      color: var(--gold);
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      margin: 0;
+      line-height: 1.2;
+    }
+
+    .banner-text p {
+      color: var(--gold-light);
+      font-size: 13px;
+      margin: 4px 0 0 0;
+      letter-spacing: 1px;
+    }
+
+    .banner-datetime {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      padding: 15px 20px;
+      background: rgba(201, 148, 58, 0.08);
+      border: 1px solid rgba(201, 148, 58, 0.2);
+      border-radius: 8px;
+      min-width: 200px;
+    }
+
+    .datetime-label {
+      color: var(--gold-light);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 600;
+    }
+
+    .datetime-display {
+      color: var(--gold);
+      font-size: 16px;
+      font-weight: 600;
+      font-family: 'Courier New', monospace;
+    }
+
+    .date-display {
+      font-size: 14px;
+      color: #C8B99A;
+      font-family: 'Inter', sans-serif;
+    }
+
+    @media (max-width: 768px) {
+      .top-banner {
+        flex-direction: column;
+        padding: 15px 20px;
+        min-height: auto;
+      }
+
+      .banner-datetime {
+        width: 100%;
+        align-items: center;
+        min-width: unset;
+      }
+
+      .banner-text h2 {
+        font-size: 18px;
+      }
+    }
+
+    /**********************/
+    
+    /* ── HERO ── */
+    .hero {
+      min-height: 92vh;
+      background: linear-gradient(160deg, #1C1209 0%, #2E1D0A 50%, #3A2410 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding: 80px 24px;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9943A' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .hero-ornament {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,148,58,.1);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+    .hero-ornament::before {
+      content: '';
+      position: absolute;
+      inset: 30px;
+      border-radius: 50%;
+      border: 1px solid rgba(201,148,58,.08);
+    }
+    .hero-content { position: relative; z-index: 2; max-width: 760px; }
+    .hero-eyebrow {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+      padding: 6px 18px;
+      border: 1px solid rgba(201,148,58,.3);
+      border-radius: 20px;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(36px, 7vw, 72px);
+      color: var(--white);
+      line-height: 1.1;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .hero h1 em { color: var(--gold); font-style: normal; }
+    .hero-sub {
+      font-family: 'Noto Serif Tamil', serif;
+      font-size: clamp(18px, 3vw, 28px);
+      color: var(--gold-light);
+      margin-bottom: 24px;
+      font-weight: 400;
+      opacity: .85;
+    }
+    .hero p {
+      color: #C8B99A;
+      font-size: 16px;
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+    .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--gold);
+      color: var(--deep);
+      padding: 14px 32px;
+      border-radius: 4px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 15px;
+      transition: background .2s, transform .15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .btn-outline {
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+      padding: 14px 32px;
+      border-radius: 4px;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 15px;
+      transition: all .2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { background: rgba(201,148,58,.1); }
+
+    /* ── STATS STRIP ── */
+    .stats {
+      background: var(--deep);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0;
+      border-top: 1px solid rgba(201,148,58,.2);
+      border-bottom: 1px solid rgba(201,148,58,.2);
+    }
+    .stat-item {
+      padding: 28px 48px;
+      text-align: center;
+      border-right: 1px solid rgba(201,148,58,.15);
+      flex: 1;
+      min-width: 150px;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 36px;
+      color: var(--gold);
+      font-weight: 700;
+      display: block;
+    }
+    .stat-label { color: #A09080; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
+
+    /* ── SECTION BASE ── */
+    section { padding: 80px 24px; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 56px; }
+    .section-eyebrow {
+      display: inline-block;
+      color: var(--gold);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .section-header h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 44px);
+      color: var(--deep);
+      font-weight: 700;
+      line-height: 1.2;
+    }
+    .section-header p { color: var(--muted); margin-top: 12px; max-width: 560px; margin-left: auto; margin-right: auto; font-size: 16px; }
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      margin: 16px auto 0;
+    }
+
+    /* ── FACILITIES ── */
+    .facilities-bg { background: var(--white); }
+    .facilities-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+    }
+    .facility-card {
+      background: var(--cream);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 32px 28px;
+      transition: box-shadow .2s, transform .2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .facility-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: linear-gradient(180deg, var(--gold), var(--gold-light));
+    }
+    .facility-card:hover { box-shadow: 0 8px 32px rgba(201,148,58,.15); transform: translateY(-3px); }
+    .facility-icon { font-size: 36px; margin-bottom: 16px; }
+    .facility-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      color: var(--deep);
+      margin-bottom: 10px;
+    }
+    .facility-card p { color: var(--muted); font-size: 14px; line-height: 1.6; }
+    .facility-badge {
+      display: inline-block;
+      background: rgba(201,148,58,.12);
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      margin-top: 10px;
+      text-transform: uppercase;
+    }
+
+    /* ── VIDEO ── */
+    .video-bg { background: var(--deep); }
+    .video-bg .section-header h2 { color: var(--white); }
+    .video-bg .section-eyebrow { color: var(--gold-light); }
+    .video-bg .divider { background: linear-gradient(90deg, var(--gold-light), var(--gold)); }
+    .video-bg .section-header p { color: #C8B99A; }
+    .video-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .video-frame {
+      position: relative;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid rgba(201,148,58,.35);
+      box-shadow: 0 16px 64px rgba(0,0,0,.5), 0 0 0 1px rgba(201,148,58,.1);
+      /* Portrait ratio for YouTube Shorts */
+      width: 360px;
+      max-width: 100%;
+      aspect-ratio: 9/16;
+    }
+    .video-frame iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* ── CALENDAR ── */
+    .calendar-bg { background: var(--cream); }
+    .calendar-wrap {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 40px;
+      align-items: start;
+    }
+    .calendar-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(28,18,9,.07);
+    }
+    .cal-header {
+      background: var(--deep);
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .cal-header h3 { color: var(--gold); font-family: 'Playfair Display', serif; font-size: 20px; }
+    .cal-nav { display: flex; gap: 8px; }
+    .cal-nav button {
+      background: rgba(201,148,58,.15);
+      border: 1px solid rgba(201,148,58,.3);
+      color: var(--gold);
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background .2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cal-nav button:hover { background: rgba(201,148,58,.3); }
+    .cal-days-header {
+      display: grid;
+      grid-template-columns: repeat(7,1fr);
+      background: rgba(201,148,58,.08);
+    }
+    .cal-days-header span {
+      text-align: center;
+      padding: 10px 4px;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .cal-grid {
+      display: grid;
+      grid-template-columns: repeat(7,1fr);
+      padding: 12px;
+      gap: 6px;
+    }
+    .cal-day {
+      aspect-ratio: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: default;
+      transition: all .15s;
+      position: relative;
+    }
+    .cal-day.empty { background: transparent; }
+    .cal-day.available {
+      background: var(--avail-bg);
+      color: var(--avail);
+      border: 1px solid #B6DFB9;
+    }
+    .cal-day.booked {
+      background: var(--booked-bg);
+      color: var(--booked);
+      border: 1px solid #F2B8B8;
+    }
+    .cal-day.today {
+      border: 2px solid var(--gold) !important;
+      font-weight: 700;
+    }
+    .cal-day.past { opacity: .4; color: var(--muted); background: #F5F0E8; border: 1px solid #E8DFCC; }
+    .cal-day .dot {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      margin-top: 2px;
+    }
+    .cal-day.available .dot { background: var(--avail); }
+    .cal-day.booked .dot { background: var(--booked); }
+    .cal-legend {
+      padding: 16px 24px;
+      display: flex;
+      gap: 20px;
+      border-top: 1px solid var(--border);
+      background: #FAFAF8;
+    }
+    .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted); }
+    .legend-dot {
+      width: 12px; height: 12px;
+      border-radius: 3px;
+    }
+    .legend-dot.avail { background: var(--avail-bg); border: 1px solid var(--avail); }
+    .legend-dot.booked { background: var(--booked-bg); border: 1px solid var(--booked); }
+
+    /* calendar info panel */
+    .cal-info {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .cal-info-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 24px;
+    }
+    .cal-info-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      color: var(--deep);
+      margin-bottom: 12px;
+    }
+    .cal-info-card p { color: var(--muted); font-size: 14px; line-height: 1.6; }
+    .cal-info-card .note {
+      background: rgba(201,148,58,.08);
+      border-left: 3px solid var(--gold);
+      padding: 12px 16px;
+      border-radius: 0 6px 6px 0;
+      font-size: 13px;
+      color: var(--text);
+      margin-top: 12px;
+    }
+
+    /* ── CONTACT ── */
+    .contact-bg { background: var(--deep); }
+    .contact-bg .section-header h2 { color: var(--white); }
+    .contact-bg .section-eyebrow { color: var(--gold-light); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    .contact-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(201,148,58,.2);
+      border-radius: 10px;
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .contact-card .icon { font-size: 32px; margin-bottom: 12px; }
+    .contact-card h4 { color: var(--gold); font-family: 'Playfair Display', serif; font-size: 17px; margin-bottom: 8px; }
+    .contact-card p { color: #C8B99A; font-size: 15px; line-height: 1.6; }
+    .contact-card a { color: var(--gold-light); text-decoration: none; }
+    .contact-card a:hover { text-decoration: underline; }
+    .map-placeholder {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid rgba(201,148,58,.2);
+    }
+    .map-placeholder iframe {
+      width: 100%;
+      height: 340px;
+      border: none;
+      filter: grayscale(30%) sepia(10%);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0E0905;
+      padding: 32px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(201,148,58,.15);
+    }
+    footer p { color: #5A4A35; font-size: 13px; }
+    footer span { color: var(--gold); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .calendar-wrap { grid-template-columns: 1fr; }
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+      .stat-item { padding: 24px 24px; }
+    }
+    @media (max-width: 600px) {
+      .stats { flex-direction: row; }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(201,148,58,.15); }
+      .stat-item:last-child { border-bottom: none; }
+    }
+
+    /* Mobile nav open */
+    nav.open .nav-links,
+    nav.open .nav-cta {
+      display: flex;
+    }
+    nav.open {
+      height: auto;
+      flex-wrap: wrap;
+      padding-bottom: 16px;
+    }
+    nav.open .nav-links {
+      flex-direction: column;
+      width: 100%;
+      gap: 16px;
+      padding-top: 12px;
+    }
+    nav.open .nav-cta { margin-top: 4px; }
+
+    /* ── BOOKING MODAL ── */
+    .bk-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 9998;
+      background: rgba(10,6,2,.85);
+      backdrop-filter: blur(6px);
+      align-items: center; justify-content: center;
+      padding: 16px;
+      overflow-y: auto;
+    }
+    .bk-overlay.open { display: flex; }
+    .bk-modal {
+      background: var(--white);
+      border-radius: 14px;
+      width: 100%; max-width: 480px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 24px 80px rgba(0,0,0,.5);
+      position: relative;
+    }
+    .bk-modal-head {
+      background: var(--deep);
+      padding: 22px 28px;
+      border-radius: 14px 14px 0 0;
+      position: sticky; top: 0; z-index: 2;
+    }
+    .bk-modal-head h3 { color: var(--gold); font-family: 'Playfair Display', serif; font-size: 20px; margin-bottom: 4px; }
+    .bk-modal-head p { color: #C8B99A; font-size: 13px; }
+    .bk-close {
+      position: absolute; top: 18px; right: 20px;
+      background: none; border: none; color: var(--gold-light);
+      font-size: 22px; cursor: pointer; line-height: 1;
+    }
+    .bk-steps { display: flex; gap: 4px; padding: 0 28px; margin-top: 14px; }
+    .bk-step-dot { flex: 1; height: 3px; border-radius: 2px; background: rgba(201,148,58,.25); }
+    .bk-step-dot.active { background: var(--gold); }
+    .bk-body { padding: 24px 28px 28px; }
+    .bk-field { margin-bottom: 16px; }
+    .bk-field label {
+      display: block; font-size: 12px; letter-spacing: .5px; text-transform: uppercase;
+      color: var(--muted); font-weight: 600; margin-bottom: 6px;
+    }
+    .bk-field input, .bk-field select {
+      width: 100%; padding: 11px 14px; border: 1px solid var(--border);
+      border-radius: 6px; font-size: 15px; color: var(--text); background: var(--cream);
+      font-family: 'Inter', sans-serif; outline: none; transition: border .2s;
+    }
+    .bk-field input:focus, .bk-field select:focus { border-color: var(--gold); }
+    .bk-field .bk-err { color: var(--booked); font-size: 12px; margin-top: 4px; display: none; }
+    .bk-btn-row { display: flex; gap: 12px; margin-top: 22px; }
+    .bk-btn {
+      flex: 1; padding: 13px; border-radius: 6px; font-weight: 700; font-size: 14px;
+      cursor: pointer; border: none; transition: background .2s, transform .1s; text-align: center;
+    }
+    .bk-btn-primary { background: var(--gold); color: var(--deep); }
+    .bk-btn-primary:hover { background: var(--gold-light); }
+    .bk-btn-primary:disabled { opacity: .55; cursor: not-allowed; }
+    .bk-btn-secondary { background: transparent; border: 1.5px solid var(--border); color: var(--muted); }
+    .bk-btn-secondary:hover { background: #F5F0E8; }
+    .bk-review-row {
+      display: flex; justify-content: space-between; padding: 10px 0;
+      border-bottom: 1px solid var(--border); font-size: 14px;
+    }
+    .bk-review-row span:first-child { color: var(--muted); }
+    .bk-review-row span:last-child { color: var(--text); font-weight: 600; text-align: right; }
+    .bk-qr-box { text-align: center; padding: 8px 0 4px; }
+    .bk-qr-box img { width: 220px; height: 220px; object-fit: contain; border: 2px solid var(--gold); border-radius: 10px; background: #fff; padding: 8px; }
+    .bk-qr-note { background: rgba(201,148,58,.08); border-left: 3px solid var(--gold); padding: 12px 16px; border-radius: 0 6px 6px 0; font-size: 13px; color: var(--text); margin-top: 16px; line-height: 1.6; }
+    .bk-alert { padding: 10px 14px; border-radius: 6px; font-size: 13px; margin-bottom: 16px; display: none; }
+    .bk-alert.error { background: rgba(184,50,50,.1); border: 1px solid rgba(184,50,50,.3); color: var(--booked); }
+    .bk-alert.show { display: block; }
+    #bk-receipt {
+      background: var(--cream); border: 1px solid var(--border); border-radius: 10px; padding: 22px;
+    }
+    #bk-receipt .rc-head { text-align: center; margin-bottom: 16px; padding-bottom: 14px; border-bottom: 2px dashed var(--border); }
+    #bk-receipt .rc-head h4 { font-family: 'Playfair Display', serif; color: var(--deep); font-size: 19px; }
+    #bk-receipt .rc-head .rc-sub { color: var(--gold); font-size: 12px; letter-spacing: 1px; margin-top: 2px; }
+    #bk-receipt .rc-badge {
+      display: inline-block; background: var(--avail-bg); color: var(--avail); font-size: 12px; font-weight: 700;
+      padding: 4px 14px; border-radius: 20px; margin-top: 10px; letter-spacing: .5px;
+    }
+    .bk-spinner {
+      display: inline-block; width: 15px; height: 15px; border: 2px solid rgba(28,18,9,.25);
+      border-top-color: var(--deep); border-radius: 50%; animation: bk-spin .7s linear infinite; margin-right: 8px; vertical-align: -2px;
+    }
+    @keyframes bk-spin { to { transform: rotate(360deg); } }
+
+    /* Tamil font override */
+    body.lang-ta { font-family: 'Noto Serif Tamil', sans-serif; }
+    body.lang-ta .hero h1,
+    body.lang-ta .section-header h2,
+    body.lang-ta .facility-card h3,
+    body.lang-ta .cal-info-card h4,
+    body.lang-ta .contact-card h4 {
+      font-family: 'Noto Serif Tamil', serif;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LANG BAR -->
+  <div class="lang-bar">
+    <span data-en="Language:" data-ta="மொழி:">Language:</span>
+    <button class="lang-btn active" onclick="setLang('en')" id="btn-en">English</button>
+    <button class="lang-btn" onclick="setLang('ta')" id="btn-ta">தமிழ்</button>
+  </div>
+
+  <!-- NAV -->
+  <nav id="main-nav">
+    <div class="nav-logo">
+      <span data-en="ERNAMANGALAM" data-ta="ஏர்ணாமங்கலம்">ERNAMANGALAM</span>
+      <span id="nav-logo-name" data-en="Vijaya Ravi Mahal A/C" data-ta="விஜய ரவி மஹால் A/C">Vijaya Ravi Mahal A/C</span>
+    </div>
+    <button class="hamburger" onclick="toggleNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#facilities" data-en="Facilities" data-ta="வசதிகள்">Facilities</a></li>
+      <li><a href="#video" data-en="Video" data-ta="வீடியோ">Video</a></li>
+      <li><a href="#availability" data-en="Availability" data-ta="கிடைப்பு">Availability</a></li>
+      <li><a href="#contact" data-en="Contact" data-ta="தொடர்பு">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta" data-en="Book Now" data-ta="இப்போது பதிவு செய்க">Book Now</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-ornament"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow" data-en="✦ Ernamangalam, Thiruvannamalai ✦" data-ta="✦ ஏர்ணாமங்கலம், திருவண்ணாமலை ✦">✦ Ernamangalam, Thiruvannamalai ✦</div>
+      <h1 data-en="Your Perfect <em>Wedding</em> Venue" data-ta="உங்கள் சிறந்த <em>திருமண</em> மேடை">Your Perfect <em>Wedding</em> Venue</h1>
+      <p class="hero-sub" data-en="விஜய ரவி மஹால் A/C" data-ta="Vijaya Ravi Mahal A/C">விஜய ரவி மஹால் A/C</p>
+		<img  bg src="vijayaRavi Mahal.png" width=100%,height=60%  </img> 
+      <p data-en="A grand celebration space on Thiruvannamalai Chengum Bypass Road — thoughtfully built for weddings that deserve every detail." data-ta="திருவண்ணாமலை சிங்கம் பைபாஸ் சாலையில் அமைந்த பிரமாண்டமான கொண்டாட்ட இடம் — ஒவ்வொரு விவரத்தையும் கவனிக்கும் திருமணங்களுக்காக.">
+        A grand celebration space on Thiruvannamalai Chengum Bypass Road — thoughtfully built for weddings that deserve every detail.
+      </p>
+      <div class="hero-btns">
+        <a href="#availability" class="btn-primary" data-en="Check Availability" data-ta="கிடைப்பை சரிபார்க்கவும்">Check Availability</a>
+        <a href="#contact" class="btn-outline" data-en="Contact Us" data-ta="எங்களை தொடர்பு கொள்ளுங்கள்">Contact Us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat-item">
+      <span class="stat-num">500</span>
+      <span class="stat-label" data-en="Hall Capacity" data-ta="மண்டப கொள்ளளவு">Hall Capacity</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">300</span>
+      <span class="stat-label" data-en="Dining Seats" data-ta="உணவருந்தும் இடங்கள்">Dining Seats</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">8</span>
+      <span class="stat-label" data-en="Guest Rooms" data-ta="விருந்தினர் அறைகள்">Guest Rooms</span>
+    </div>
+    <div class="stat-item">
+      <span class="stat-num">300+</span>
+      <span class="stat-label" data-en="Parking Spots" data-ta="வாகன நிறுத்தம்">Parking Spots</span>
+    </div>
+  </div>
+
+  <!-- FACILITIES -->
+  <section class="facilities-bg" id="facilities">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-eyebrow" data-en="What We Offer" data-ta="நாங்கள் வழங்குவது">What We Offer</div>
+        <h2 data-en="World-Class Facilities" data-ta="உலகத்தரம் வாய்ந்த வசதிகள்">World-Class Facilities</h2>
+        <div class="divider"></div>
+        <p data-en="Everything you need for a flawless celebration, all under one roof." data-ta="குறைபாடற்ற கொண்டாட்டத்திற்கு தேவையான அனைத்தும், ஒரே கூரையின் கீழ்.">Everything you need for a flawless celebration, all under one roof.</p>
+      </div>
+      <div class="facilities-grid">
+
+        <div class="facility-card">
+          <div class="facility-icon">🏛️</div>
+          <h3 data-en="Grand Marriage Hall" data-ta="பிரமாண்ட திருமண மண்டபம்">Grand Marriage Hall</h3>
+          <p data-en="Spacious main hall accommodating up to 500 guests, with elegant décor, stage setup, and full air conditioning." data-ta="500 விருந்தினர்களை அமர்த்தக்கூடிய விசாலமான மண்டபம், நேர்த்தியான அலங்காரம், மேடை அமைப்பு மற்றும் முழு குளிரூட்டல் வசதியுடன்.">
+            Spacious main hall accommodating up to 500 guests, with elegant décor, stage setup, and full air conditioning.
+          </p>
+          <span class="facility-badge" data-en="500 Guests" data-ta="500 விருந்தினர்கள்">500 Guests</span>
+        </div>
+
+        <div class="facility-card">
+          <div class="facility-icon">🍽️</div>
+          <h3 data-en="Dining Area" data-ta="உணவு அரங்கம்">Dining Area</h3>
+          <p data-en="Dedicated dining space that comfortably seats 200–300 guests at a time, designed for smooth banquet service." data-ta="ஒரே நேரத்தில் 200–300 விருந்தினர்களை வசதியாக அமர்த்தக்கூடிய சிறப்பு உணவு இடம்.">
+            Dedicated dining space that comfortably seats 200–300 guests at a time, designed for smooth banquet service.
+          </p>
+          <span class="facility-badge" data-en="200–300 Seats" data-ta="200–300 இருக்கைகள்">200–300 Seats</span>
+        </div>
+
+        <div class="facility-card">
+          <div class="facility-icon">🛏️</div>
+          <h3 data-en="Guest Rooms" data-ta="விருந்தினர் அறைகள்">Guest Rooms</h3>
+          <p data-en="7–8 fully furnished, air-conditioned guest rooms for close family and out-of-town relatives to rest comfortably." data-ta="நெருங்கிய குடும்பத்தினர் மற்றும் வெளியூர் உறவினர்களுக்காக 7–8 முழுமையாக வசதி மிக்க, குளிரூட்டப்பட்ட விருந்தினர் அறைகள்.">
+            7–8 fully furnished, air-conditioned guest rooms for close family and out-of-town relatives to rest comfortably.
+          </p>
+          <span class="facility-badge" data-en="AC Furnished" data-ta="குளிரூட்டப்பட்ட அறைகள்">AC Furnished</span>
+        </div>
+
+        <div class="facility-card">
+          <div class="facility-icon">👑</div>
+          <h3 data-en="Bridal & Groom Rooms" data-ta="மணமகள் & மணமகன் அறைகள்">Bridal & Groom Rooms</h3>
+          <p data-en="Private, luxuriously appointed bridal and groom suites with dressing areas and wardrobes for a stress-free preparation." data-ta="தனியார் ஆடை அலமாரிகளுடன் நேர்த்தியான மணமகள் மற்றும் மணமகன் அறைகள்.">
+            Private, luxuriously appointed bridal and groom suites with dressing areas and wardrobes for a stress-free preparation.
+          </p>
+          <span class="facility-badge" data-en="Private Suites" data-ta="தனி அறைகள்">Private Suites</span>
+        </div>
+
+        <div class="facility-card">
+          <div class="facility-icon">💐</div>
+          <h3 data-en="Flower Decoration" data-ta="மலர் அலங்காரம்">Flower Decoration</h3>
+          <p data-en="In-house floral decoration services for mandapam, entrance, dining and all venue areas — fresh blooms, traditional or contemporary style." data-ta="மண்டபம், நுழைவாயில், உணவு அரங்கம் மற்றும் அனைத்து இடங்களுக்கும் மலர் அலங்கார சேவைகள்.">
+            In-house floral decoration services for mandapam, entrance, dining and all venue areas — fresh blooms, traditional or contemporary style.
+          </p>
+          <span class="facility-badge" data-en="In-House Service" data-ta="உள் சேவை">In-House Service</span>
+        </div>
+
+        <div class="facility-card">
+          <div class="facility-icon">💡</div>
+          <h3 data-en="Lighting & Photography" data-ta="விளக்கமைப்பு & புகைப்படம்">Lighting & Photography</h3>
+          <p data-en="Professional event lighting and photography packages available to capture every precious moment in the best light." data-ta="ஒவ்வொரு அருமையான தருணத்தையும் சிறந்த வெளிச்சத்தில் படம் பிடிக்க தொழில்முறை நிகழ்வு விளக்கமைப்பு மற்றும் புகைப்படம்.">
+            Professional event lighting and photography packages available to capture every precious moment in the best light.
+          </p>
+          <span class="facility-badge" data-en="Professional Setup" data-ta="தொழில்முறை அமைப்பு">Professional Setup</span>
+        </div>
+
+        <div class="facility-card">
+          <div class="facility-icon">🌿</div>
+          <h3 data-en="Lawn & Garden Area" data-ta="புல்வெளி & தோட்ட இடம்">Lawn & Garden Area</h3>
+          <p data-en="A vast open lawn and garden park perfect for outdoor ceremonies, pre-wedding shoots, and evening receptions." data-ta="வெளிப்புற விழாக்கள், திருமண முன் புகைப்படம் மற்றும் மாலை விழாக்களுக்கு ஏற்ற விசாலமான திறந்தவெளி புல்வெளி.">
+            A vast open lawn and garden park perfect for outdoor ceremonies, pre-wedding shoots, and evening receptions.
+          </p>
+          <span class="facility-badge" data-en="Vast Open Space" data-ta="விசாலமான திறந்தவெளி">Vast Open Space</span>
+        </div>
+
+        <div class="facility-card">
+          <div class="facility-icon">🅿️</div>
+          <h3 data-en="Ample Parking" data-ta="விரிவான வாகன நிறுத்தம்">Ample Parking</h3>
+          <p data-en="Secure parking for up to 300 two-wheelers and 100 four-wheelers, managed by our on-site staff." data-ta="300 இரு சக்கர வாகனங்கள் மற்றும் 100 நான்கு சக்கர வாகனங்களுக்கான பாதுகாப்பான வாகன நிறுத்தம்.">
+            Secure parking for up to 300 two-wheelers and 100 four-wheelers, managed by our on-site staff.
+          </p>
+          <span class="facility-badge" data-en="300 Bikes · 100 Cars" data-ta="300 இரு சக்கரம் · 100 நான்கு சக்கரம்">300 Bikes · 100 Cars</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO -->
+  <section class="video-bg" id="video">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-eyebrow" data-en="See It Live" data-ta="நேரில் பாருங்கள்">See It Live</div>
+        <h2 data-en="Take a Virtual Tour" data-ta="மெய்நிகர் சுற்றுப்பயணம்">Take a Virtual Tour</h2>
+        <div class="divider"></div>
+        <p data-en="Watch our venue video to experience the beauty of Vijaya Ravi Mahal A/C before your visit." data-ta="உங்கள் வருகைக்கு முன்பு விஜய ரவி மஹால் A/C-ன் அழகை அனுபவிக்க எங்கள் வீடியோவை பாருங்கள்.">
+          Watch our venue video to experience the beauty of Vijaya Ravi Mahal A/C before your visit.
+        </p>
+      </div>
+      <div class="video-wrap">
+        <div class="video-frame">
+          <iframe
+            src="https://www.youtube.com/embed/HEuE7tqC4i4?autoplay=1&mute=1&loop=1&playlist=HEuE7tqC4i4&rel=0&playsinline=1"
+            allow="autoplay; encrypted-media; picture-in-picture"
+            allowfullscreen
+            loading="lazy"
+            title="Vijaya Ravi Mahal A/C – Venue Tour">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVAILABILITY CALENDAR -->
+  <section class="calendar-bg" id="availability">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-eyebrow" data-en="Plan Your Date" data-ta="உங்கள் தேதியை திட்டமிடுங்கள்">Plan Your Date</div>
+        <h2 data-en="Booking Availability" data-ta="முன்பதிவு கிடைப்பு">Booking Availability</h2>
+        <div class="divider"></div>
+        <p data-en="Check available dates below and contact us to confirm your booking offline." data-ta="கீழே கிடைக்கக்கூடிய தேதிகளை சரிபார்த்து, உங்கள் முன்பதிவை ஆஃப்லைனில் உறுதிப்படுத்த எங்களை தொடர்பு கொள்ளுங்கள்.">
+          Check available dates below and contact us to confirm your booking offline.
+        </p>
+      </div>
+
+      <div class="calendar-wrap">
+        <div>
+          <div class="calendar-box">
+            <div class="cal-header">
+              <h3 id="cal-month-label">July 2025</h3>
+              <div class="cal-nav">
+                <button onclick="changeMonth(-1)" aria-label="Previous">&#8249;</button>
+                <button onclick="changeMonth(1)" aria-label="Next">&#8250;</button>
+              </div>
+            </div>
+            <div class="cal-days-header">
+              <span data-en="Sun" data-ta="ஞா">Sun</span>
+              <span data-en="Mon" data-ta="தி">Mon</span>
+              <span data-en="Tue" data-ta="செ">Tue</span>
+              <span data-en="Wed" data-ta="பு">Wed</span>
+              <span data-en="Thu" data-ta="வி">Thu</span>
+              <span data-en="Fri" data-ta="வெ">Fri</span>
+              <span data-en="Sat" data-ta="ச">Sat</span>
+            </div>
+            <div class="cal-grid" id="cal-grid"></div>
+            <div class="cal-legend">
+              <div class="legend-item">
+                <div class="legend-dot avail"></div>
+                <span data-en="Available" data-ta="கிடைக்கிறது">Available</span>
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot booked"></div>
+                <span data-en="Booked" data-ta="முன்பதிவு செய்யப்பட்டது">Booked</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cal-info">
+          <div class="cal-info-card">
+            <h4 data-en="How to Book" data-ta="எவ்வாறு முன்பதிவு செய்வது">How to Book</h4>
+            <p data-en="Click any green (available) date on the calendar to book it instantly online — enter your details, review, pay via QR, and download your receipt." data-ta="காலண்டரில் பச்சை (கிடைக்கும்) தேதியை கிளிக் செய்து உடனடியாக ஆன்லைனில் முன்பதிவு செய்யுங்கள் — உங்கள் விவரங்களை உள்ளிட்டு, மறுபரிசீலனை செய்து, QR மூலம் பணம் செலுத்தி, உங்கள் ரசீதை பதிவிறக்கம் செய்யுங்கள்.">
+              Click any green (available) date on the calendar to book it instantly online — enter your details, review, pay via QR, and download your receipt.
+            </p>
+            <div class="note" data-en="📞 Have questions? Call us to confirm details before your booking." data-ta="📞 கேள்விகள் உள்ளதா? முன்பதிவு செய்வதற்கு முன் விவரங்களை உறுதிப்படுத்த எங்களை அழையுங்கள்.">
+              📞 Have questions? Call us to confirm details before your booking.
+            </div>
+          </div>
+          <div class="cal-info-card">
+            <h4 data-en="Quick Contact" data-ta="விரைவு தொடர்பு">Quick Contact</h4>
+            <p>
+              <strong style="color:var(--deep)" data-en="Phone:" data-ta="தொலைபேசி:">Phone:</strong><br>
+              <a href="tel:+919994328349" style="color:var(--gold);font-size:18px;font-weight:700;text-decoration:none;">+91 99943 28349</a>
+            </p>
+            <p style="margin-top:12px;" data-en="Available 9 AM – 8 PM, all days" data-ta="தினமும் காலை 9 மணி – இரவு 8 மணி வரை">Available 9 AM – 8 PM, all days</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-bg" id="contact">
+    <div class="section-inner">
+      <div class="section-header">
+        <div class="section-eyebrow" data-en="Get in Touch" data-ta="தொடர்பு கொள்ளுங்கள்">Get in Touch</div>
+        <h2 data-en="Find Us" data-ta="எங்களை கண்டுபிடியுங்கள்">Find Us</h2>
+        <div class="divider"></div>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <div class="icon">📍</div>
+          <h4 data-en="Address" data-ta="முகவரி">Address</h4>
+          <p data-en="Ernamangalam, Thiruvannamalai Chengum Bypass Road, Thiruvannamalai District, Tamil Nadu." data-ta="ஏர்ணாமங்கலம், திருவண்ணாமலை சிங்கம் பைபாஸ் சாலை, திருவண்ணாமலை மாவட்டம், தமிழ்நாடு.">
+            Ernamangalam, Thiruvannamalai Chengum Bypass Road,<br>Thiruvannamalai District, Tamil Nadu.
+          </p>
+        </div>
+        <div class="contact-card">
+          <div class="icon">📞</div>
+          <h4 data-en="Phone" data-ta="தொலைபேசி">Phone</h4>
+          <p>
+            <a href="tel:+919994328349">+91 99943 28349</a>
+          </p>
+          <p style="margin-top:10px;font-size:13px;" data-en="Available 9 AM – 8 PM daily" data-ta="தினமும் காலை 9 – இரவு 8 மணி">Available 9 AM – 8 PM daily</p>
+        </div>
+        <div class="contact-card">
+          <div class="icon">🕐</div>
+          <h4 data-en="Office Hours" data-ta="அலுவலக நேரம்">Office Hours</h4>
+          <p data-en="Open all days of the week. Site visits welcome between 10 AM and 6 PM." data-ta="வாரத்தின் அனைத்து நாட்களும் திறந்திருக்கும். காலை 10 மணி முதல் மாலை 6 மணி வரை தள பார்வை வரவேற்கிறோம்.">
+            Open all days of the week.<br>Site visits: 10 AM – 6 PM
+          </p>
+        </div>
+      </div>
+
+      <!-- Google Maps embed - Ernamangalam, Thiruvannamalai area -->
+      <div class="map-placeholder">
+        <iframe
+          src="https://maps.google.com/maps?q=12.4398125,79.0273281&t=&z=18&ie=UTF8&iwloc=&output=embed"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Location Map">
+        </iframe>
+      </div>
+      <div style="text-align:center; margin-top:16px;">
+        <a href="https://maps.app.goo.gl/RVzeL4Wvr6DwA36c8" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:8px;color:var(--gold-light);font-size:14px;text-decoration:none;border:1px solid rgba(201,148,58,.3);padding:10px 20px;border-radius:6px;transition:background .2s;"
+           onmouseover="this.style.background='rgba(201,148,58,.1)'" onmouseout="this.style.background='none'">
+          📍 <span data-en="Open in Google Maps" data-ta="கூகுள் மேப்பில் திற">Open in Google Maps</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p data-en="© 2026 Vijaya Ravi Mahal A/C, Ernamangalam · Thiruvannamalai District · All Rights Reserved" data-ta="© 2025 விஜய ரவி மஹால் A/C, ஏர்ணாமங்கலம் · திருவண்ணாமலை மாவட்டம் · அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை">
+      © 2026 <span>Vijaya Ravi Mahal A/C</span>, Ernamangalam · Thiruvannamalai District · All Rights Reserved
+    </p>
+  </footer>
+
+  <!-- ── BOOKING MODAL ── -->
+  <div class="bk-overlay" id="bk-overlay">
+    <div class="bk-modal">
+      <button class="bk-close" onclick="closeBooking()" aria-label="Close">✕</button>
+      <div class="bk-modal-head">
+        <h3 id="bk-title">Book Your Date</h3>
+        <p id="bk-subtitle">Vijaya Ravi Mahal A/C</p>
+      </div>
+      <div class="bk-steps">
+        <div class="bk-step-dot active" id="bk-dot-1"></div>
+        <div class="bk-step-dot" id="bk-dot-2"></div>
+        <div class="bk-step-dot" id="bk-dot-3"></div>
+        <div class="bk-step-dot" id="bk-dot-4"></div>
+      </div>
+      <div class="bk-body">
+
+        <!-- STEP 1: DETAILS -->
+        <div id="bk-step-1">
+          <div class="bk-alert error" id="bk-step1-alert"></div>
+          <div class="bk-field">
+            <label>Full Name</label>
+            <input type="text" id="bk-name" placeholder="Enter your full name" />
+          </div>
+          <div class="bk-field">
+            <label>Email Address</label>
+            <input type="email" id="bk-email" placeholder="you@example.com" />
+          </div>
+          <div class="bk-field">
+            <label>Mobile Number</label>
+            <input type="tel" id="bk-mobile" placeholder="10-digit mobile number" maxlength="10" inputmode="numeric" />
+          </div>
+          <div class="bk-field">
+            <label>Booking Date</label>
+            <input type="date" id="bk-date" />
+          </div>
+          <div class="bk-field">
+            <label>Purpose</label>
+            <select id="bk-purpose">
+              <option value="">Select purpose</option>
+              <option value="Marriage">Marriage</option>
+              <option value="Reception">Reception</option>
+              <option value="Puberty (Half Saree)">Puberty (Half Saree)</option>
+              <option value="Ear Boring">Ear Boring</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>
+          <div class="bk-btn-row">
+            <button class="bk-btn bk-btn-primary" onclick="goToReview()">Review Booking →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2: REVIEW -->
+        <div id="bk-step-2" style="display:none;">
+          <div class="bk-review-row"><span>Name</span><span id="rv-name"></span></div>
+          <div class="bk-review-row"><span>Email</span><span id="rv-email"></span></div>
+          <div class="bk-review-row"><span>Mobile</span><span id="rv-mobile"></span></div>
+          <div class="bk-review-row"><span>Date</span><span id="rv-date"></span></div>
+          <div class="bk-review-row"><span>Purpose</span><span id="rv-purpose"></span></div>
+          <div class="bk-btn-row">
+            <button class="bk-btn bk-btn-secondary" onclick="goToStep(1)">← Edit</button>
+            <button class="bk-btn bk-btn-primary" onclick="goToPayment()">Confirm & Pay →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3: PAYMENT -->
+        <div id="bk-step-3" style="display:none;">
+          <div class="bk-alert error" id="bk-step3-alert"></div>
+          <div class="bk-qr-box">
+            <img src="payment-qr.png" alt="Scan to Pay" onerror="this.src='https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=Replace%20payment-qr.png%20with%20your%20real%20UPI%20QR'" />
+          </div>
+          <div class="bk-qr-note">
+            📱 Scan this QR code with any UPI app (GPay, PhonePe, Paytm) to pay your advance. Once payment is done, tap the button below to confirm your booking.
+          </div>
+          <div class="bk-btn-row">
+            <button class="bk-btn bk-btn-secondary" onclick="goToStep(2)">← Back</button>
+            <button class="bk-btn bk-btn-primary" id="bk-pay-confirm-btn" onclick="confirmPayment()">I Have Paid — Confirm Booking</button>
+          </div>
+        </div>
+
+        <!-- STEP 4: RECEIPT -->
+        <div id="bk-step-4" style="display:none;">
+          <div id="bk-receipt">
+            <div class="rc-head">
+              <h4>Vijaya Ravi Mahal A/C</h4>
+              <div class="rc-sub">BOOKING RECEIPT</div>
+              <div class="rc-badge">✓ Confirmed</div>
+            </div>
+            <div class="bk-review-row"><span>Receipt No.</span><span id="rc-receipt-no"></span></div>
+            <div class="bk-review-row"><span>Name</span><span id="rc-name"></span></div>
+            <div class="bk-review-row"><span>Mobile</span><span id="rc-mobile"></span></div>
+            <div class="bk-review-row"><span>Email</span><span id="rc-email"></span></div>
+            <div class="bk-review-row"><span>Event Date</span><span id="rc-date"></span></div>
+            <div class="bk-review-row"><span>Purpose</span><span id="rc-purpose"></span></div>
+            <div class="bk-review-row"><span>Booked On</span><span id="rc-created"></span></div>
+          </div>
+          <div class="bk-btn-row">
+            <button class="bk-btn bk-btn-secondary" onclick="closeBooking()">Close</button>
+            <button class="bk-btn bk-btn-primary" onclick="downloadReceipt()">⬇ Download Receipt (PDF)</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ADMIN LOGIN MODAL ── -->
+  <div id="admin-modal" style="display:none; position:fixed; inset:0; z-index:9999; background:rgba(10,6,2,.85); backdrop-filter:blur(6px); align-items:center; justify-content:center;">
+    <div style="background:#1C1209; border:1px solid rgba(201,148,58,.35); border-radius:14px; padding:40px 36px; width:100%; max-width:380px; margin:16px; box-shadow:0 24px 80px rgba(0,0,0,.6); position:relative;">
+      <button onclick="closeAdmin()" style="position:absolute;top:14px;right:16px;background:none;border:none;color:#7A6A55;font-size:22px;cursor:pointer;line-height:1;">✕</button>
+      <div style="text-align:center; margin-bottom:28px;">
+        <div style="font-size:36px; margin-bottom:10px;">🔐</div>
+        <h2 style="font-family:'Playfair Display',serif; color:#C9943A; font-size:22px; margin-bottom:4px;">Admin Login</h2>
+        <p style="color:#7A6A55; font-size:13px;">Vijaya Ravi Mahal A/C — Staff Only</p>
+      </div>
+      <div style="margin-bottom:16px;">
+        <label style="display:block; color:#C8B99A; font-size:12px; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">Username</label>
+        <input id="admin-user" type="text" placeholder="Enter username"
+          style="width:100%; padding:11px 14px; background:#2E1D0A; border:1px solid rgba(201,148,58,.25); border-radius:6px; color:#FAF6EF; font-size:15px; outline:none; transition:border .2s;"
+          onfocus="this.style.borderColor='#C9943A'" onblur="this.style.borderColor='rgba(201,148,58,.25)'"
+          onkeydown="if(event.key==='Enter') adminLogin()" />
+      </div>
+      <div style="margin-bottom:24px;">
+        <label style="display:block; color:#C8B99A; font-size:12px; letter-spacing:1px; text-transform:uppercase; margin-bottom:6px;">Password</label>
+        <input id="admin-pass" type="password" placeholder="Enter password"
+          style="width:100%; padding:11px 14px; background:#2E1D0A; border:1px solid rgba(201,148,58,.25); border-radius:6px; color:#FAF6EF; font-size:15px; outline:none; transition:border .2s;"
+          onfocus="this.style.borderColor='#C9943A'" onblur="this.style.borderColor='rgba(201,148,58,.25)'"
+          onkeydown="if(event.key==='Enter') adminLogin()" />
+      </div>
+      <div id="admin-error" style="display:none; background:rgba(184,50,50,.15); border:1px solid rgba(184,50,50,.4); color:#F2A0A0; font-size:13px; padding:10px 14px; border-radius:6px; margin-bottom:16px; text-align:center;">
+        ❌ Invalid username or password
+      </div>
+      <button onclick="adminLogin()"
+        style="width:100%; padding:13px; background:#C9943A; color:#1C1209; font-weight:700; font-size:15px; border:none; border-radius:6px; cursor:pointer; transition:background .2s; letter-spacing:.5px;"
+        onmouseover="this.style.background='#E8C97A'" onmouseout="this.style.background='#C9943A'">
+        Login →
+      </button>
+    </div>
+  </div>
+
+  <!-- ── ADMIN PANEL (shown when logged in) ── -->
+  <div id="admin-panel" style="display:none; position:fixed; bottom:24px; right:24px; z-index:999; width:320px; background:#1C1209; border:1px solid rgba(201,148,58,.35); border-radius:14px; box-shadow:0 12px 48px rgba(0,0,0,.5); overflow:hidden;">
+    <!-- Panel Header -->
+    <div style="background:rgba(201,148,58,.12); padding:14px 18px; display:flex; align-items:center; justify-content:space-between; border-bottom:1px solid rgba(201,148,58,.2);">
+      <div>
+        <div style="color:#C9943A; font-weight:700; font-size:14px; letter-spacing:.5px;">⚙️ Admin Panel</div>
+        <div style="color:#7A6A55; font-size:11px; margin-top:1px;">Logged in as <span style="color:#E8C97A;">admin</span></div>
+      </div>
+      <button onclick="adminLogout()"
+        style="background:rgba(184,50,50,.2); border:1px solid rgba(184,50,50,.35); color:#F2A0A0; padding:5px 12px; border-radius:20px; font-size:12px; cursor:pointer; transition:background .2s;"
+        onmouseover="this.style.background='rgba(184,50,50,.4)'" onmouseout="this.style.background='rgba(184,50,50,.2)'">
+        Logout
+      </button>
+    </div>
+    <!-- Instructions -->
+    <div style="padding:12px 18px; background:rgba(201,148,58,.06); border-bottom:1px solid rgba(201,148,58,.1); font-size:12px; color:#A09080; line-height:1.5;">
+      💡 Click a <span style="color:#3A7D44;">green</span> date to manually block it, or a <span style="color:#B83232;">red</span> date to view/cancel that booking.
+    </div>
+    <!-- Booked Dates List -->
+    <div style="padding:14px 18px;">
+      <div style="color:#C8B99A; font-size:12px; font-weight:600; letter-spacing:1px; text-transform:uppercase; margin-bottom:10px;">Blocked Dates <span id="admin-count" style="background:rgba(201,148,58,.2); color:#C9943A; padding:1px 8px; border-radius:10px; font-size:11px; margin-left:4px;">0</span></div>
+      <div id="admin-dates-list" style="max-height:200px; overflow-y:auto; display:flex; flex-direction:column; gap:6px;">
+        <div style="color:#5A4A35; font-size:13px; text-align:center; padding:16px 0;" id="admin-empty-msg">No dates blocked yet</div>
+      </div>
+    </div>
+    <!-- Clear All -->
+    <div style="padding:0 18px 14px;">
+      <button onclick="clearAdminHolds()"
+        style="width:100%; padding:9px; background:rgba(184,50,50,.12); border:1px solid rgba(184,50,50,.3); color:#F2A0A0; font-size:13px; border-radius:6px; cursor:pointer; transition:background .2s;"
+        onmouseover="this.style.background='rgba(184,50,50,.25)'" onmouseout="this.style.background='rgba(184,50,50,.12)'">
+        🗑 Clear My Manual Holds
+      </button>
+    </div>
+  </div>
+
+  <!-- ── ADMIN TRIGGER BUTTON ── -->
+  <button id="admin-trigger" onclick="openAdmin()"
+    title="Admin Login"
+    style="position:fixed; bottom:24px; right:24px; z-index:998; width:50px; height:50px; border-radius:50%; background:#1C1209; border:1px solid rgba(201,148,58,.4); color:#C9943A; font-size:20px; cursor:pointer; box-shadow:0 4px 20px rgba(0,0,0,.4); transition:all .2s;"
+    onmouseover="this.style.background='#2E1D0A'; this.style.transform='scale(1.08)'"
+    onmouseout="this.style.background='#1C1209'; this.style.transform='scale(1)'">
+    🔐
+  </button>
+
+  <style>
+    #admin-dates-list::-webkit-scrollbar { width: 4px; }
+    #admin-dates-list::-webkit-scrollbar-track { background: transparent; }
+    #admin-dates-list::-webkit-scrollbar-thumb { background: rgba(201,148,58,.3); border-radius: 4px; }
+    .admin-date-row {
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(184,50,50,.1); border: 1px solid rgba(184,50,50,.2);
+      border-radius: 6px; padding: 7px 10px;
+    }
+    .admin-date-row span { color: #F2B8B8; font-size: 13px; font-weight: 500; }
+    .admin-date-row button {
+      background: none; border: none; color: #B83232; font-size: 16px;
+      cursor: pointer; line-height: 1; padding: 0 2px; transition: color .15s;
+    }
+    .admin-date-row button:hover { color: #FF6B6B; }
+    .cal-day.admin-clickable { cursor: pointer !important; }
+    .cal-day.admin-clickable:hover { filter: brightness(1.15); transform: scale(1.06); transition: all .12s; }
+  </style>
+
+  <script>
+    /* ════════════════════════════════
+       Admin password is verified SERVER-SIDE against the
+       ADMIN_PASSWORD environment variable (see /api/admin-bookings.js).
+       There is nothing to configure here.
+       ════════════════════════════════ */
+
+    /* ── STATE ── */
+    let currentLang = 'en';
+    let isAdminLoggedIn = false;
+    let adminToken = null;
+    let bookedDates = new Set();      // dates that are unavailable (public view)
+    let allBookings = [];             // full booking records (admin view only)
+    let selectedBookingDate = null;   // date currently being booked in the wizard
+
+    // Load booked dates from the live database via the API.
+    async function loadBookedDates() {
+      try {
+        const res = await fetch('/api/bookings');
+        if (!res.ok) throw new Error('failed');
+        const data = await res.json();
+        bookedDates = new Set(data.bookedDates || []);
+      } catch (e) {
+        console.warn('Could not load availability from server:', e);
+      }
+      renderCalendar();
+    }
+
+    /* ── LANGUAGE ── */
+    function setLang(lang) {
+      currentLang = lang;
+      document.body.classList.toggle('lang-ta', lang === 'ta');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      document.getElementById('btn-ta').classList.toggle('active', lang === 'ta');
+      document.querySelectorAll('[data-en]').forEach(el => {
+        const text = el.getAttribute('data-' + lang);
+        if (!text) return;
+        if (text.includes('<')) { el.innerHTML = text; }
+        else { el.textContent = text; }
+      });
+      renderCalendar();
+    }
+
+    /* ── MOBILE NAV ── */
+    function toggleNav() {
+      document.getElementById('main-nav').classList.toggle('open');
+    }
+
+    /* ── ADMIN LOGIN ── */
+    function openAdmin() {
+      if (isAdminLoggedIn) return; // panel already visible
+      const modal = document.getElementById('admin-modal');
+      modal.style.display = 'flex';
+      document.getElementById('admin-user').value = '';
+      document.getElementById('admin-pass').value = '';
+      document.getElementById('admin-error').style.display = 'none';
+      setTimeout(() => document.getElementById('admin-user').focus(), 100);
+    }
+
+    function closeAdmin() {
+      document.getElementById('admin-modal').style.display = 'none';
+    }
+
+    async function adminLogin() {
+      const p = document.getElementById('admin-pass').value;
+      const errBox = document.getElementById('admin-error');
+      errBox.style.display = 'none';
+      if (!p) { errBox.textContent = '❌ Please enter the admin password'; errBox.style.display = 'block'; return; }
+
+      try {
+        const res = await fetch('/api/admin-bookings', { headers: { 'x-admin-token': p } });
+        if (!res.ok) throw new Error('unauthorized');
+        const data = await res.json();
+        allBookings = data.bookings || [];
+        adminToken = p;
+        isAdminLoggedIn = true;
+        bookedDates = new Set(allBookings.map(b => b.event_date));
+        document.getElementById('admin-modal').style.display = 'none';
+        document.getElementById('admin-trigger').style.display = 'none';
+        document.getElementById('admin-panel').style.display = 'block';
+        renderCalendar();
+        refreshAdminList();
+      } catch (e) {
+        errBox.textContent = '❌ Invalid admin password';
+        errBox.style.display = 'block';
+        document.getElementById('admin-pass').value = '';
+        document.getElementById('admin-pass').focus();
+      }
+    }
+
+    function adminLogout() {
+      isAdminLoggedIn = false;
+      adminToken = null;
+      document.getElementById('admin-panel').style.display = 'none';
+      document.getElementById('admin-trigger').style.display = 'flex';
+      loadBookedDates();
+    }
+
+    /* ── TOGGLE DATE (admin only) ── */
+    async function toggleDate(dateStr) {
+      if (!isAdminLoggedIn) return;
+      const existing = allBookings.find(b => b.event_date === dateStr);
+
+      if (existing) {
+        if (!confirm(`Cancel this booking?\n\n${existing.name} — ${existing.purpose}\n${dateStr}`)) return;
+        await adminDeleteBooking(existing.id);
+      } else {
+        const reason = prompt('Reason for blocking this date (e.g. Maintenance, Offline booking):', '');
+        if (reason === null) return; // cancelled
+        try {
+          const res = await fetch('/api/admin-bookings', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'x-admin-token': adminToken },
+            body: JSON.stringify({ date: dateStr, reason }),
+          });
+          const data = await res.json();
+          if (!res.ok) { alert(data.error || 'Could not block date.'); return; }
+          await refreshAdminData();
+        } catch (e) {
+          alert('Network error — could not block date.');
+        }
+      }
+    }
+
+    async function adminDeleteBooking(id) {
+      try {
+        const res = await fetch('/api/admin-bookings', {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json', 'x-admin-token': adminToken },
+          body: JSON.stringify({ id }),
+        });
+        const data = await res.json();
+        if (!res.ok) { alert(data.error || 'Could not cancel booking.'); return; }
+        await refreshAdminData();
+      } catch (e) {
+        alert('Network error — could not cancel booking.');
+      }
+    }
+
+    async function refreshAdminData() {
+      try {
+        const res = await fetch('/api/admin-bookings', { headers: { 'x-admin-token': adminToken } });
+        const data = await res.json();
+        allBookings = data.bookings || [];
+        bookedDates = new Set(allBookings.map(b => b.event_date));
+        renderCalendar();
+        refreshAdminList();
+      } catch (e) {}
+    }
+
+    async function clearAdminHolds() {
+      const holds = allBookings.filter(b => b.status === 'admin_block');
+      if (holds.length === 0) { alert('No manual holds to clear.'); return; }
+      if (!confirm(`Remove ${holds.length} manually-blocked date(s)? Real guest bookings are never affected.`)) return;
+      for (const h of holds) {
+        await fetch('/api/admin-bookings', {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json', 'x-admin-token': adminToken },
+          body: JSON.stringify({ id: h.id }),
+        });
+      }
+      await refreshAdminData();
+    }
+
+    /* ── ADMIN LIST ── */
+    function refreshAdminList() {
+      const list = document.getElementById('admin-dates-list');
+      const count = document.getElementById('admin-count');
+      const sorted = [...allBookings].sort((a, b) => a.event_date.localeCompare(b.event_date));
+      count.textContent = sorted.length;
+
+      list.innerHTML = '';
+      if (sorted.length === 0) {
+        list.innerHTML = '<div style="color:#5A4A35;font-size:13px;text-align:center;padding:16px 0;">No dates blocked yet</div>';
+        return;
+      }
+      sorted.forEach(b => {
+        const row = document.createElement('div');
+        row.className = 'admin-date-row';
+        const dateObj = new Date(b.event_date + 'T00:00:00');
+        const label = dateObj.toLocaleDateString('en-IN', { day:'numeric', month:'short', year:'numeric' });
+        const isBlock = b.status === 'admin_block';
+        const who = isBlock ? (b.purpose || 'Admin Hold') : `${b.name} · ${b.purpose}`;
+        row.title = isBlock ? '' : `${b.email} · ${b.mobile}`;
+        row.innerHTML = `<span>🔴 ${label} — ${who}</span><button onclick="adminDeleteBooking(${b.id})" title="Cancel / Unblock">✕</button>`;
+        list.appendChild(row);
+      });
+    }
+
+    /* ── CALENDAR ── */
+    const monthsEn = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    const monthsTa = ['ஜனவரி','பிப்ரவரி','மார்ச்','ஏப்ரல்','மே','ஜூன்','ஜூலை','ஆகஸ்ட்','செப்டம்பர்','அக்டோபர்','நவம்பர்','டிசம்பர்'];
+
+    let viewYear = new Date().getFullYear();
+    let viewMonth = new Date().getMonth();
+
+    function changeMonth(delta) {
+      viewMonth += delta;
+      if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+      if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+      renderCalendar();
+    }
+
+    function renderCalendar() {
+      const today = new Date();
+      const todayStr = toDateStr(today.getFullYear(), today.getMonth(), today.getDate());
+      const months = currentLang === 'ta' ? monthsTa : monthsEn;
+      document.getElementById('cal-month-label').textContent = months[viewMonth] + ' ' + viewYear;
+
+      const grid = document.getElementById('cal-grid');
+      grid.innerHTML = '';
+
+      const firstDay = new Date(viewYear, viewMonth, 1).getDay();
+      const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+
+      for (let i = 0; i < firstDay; i++) {
+        const empty = document.createElement('div');
+        empty.className = 'cal-day empty';
+        grid.appendChild(empty);
+      }
+
+      for (let d = 1; d <= daysInMonth; d++) {
+        const dateStr = toDateStr(viewYear, viewMonth, d);
+        const cell = document.createElement('div');
+        const isPast = dateStr < todayStr;
+        const isToday = dateStr === todayStr;
+        const isBooked = bookedDates.has(dateStr);
+
+        let cls = 'cal-day ';
+        if (isPast) cls += 'past';
+        else if (isBooked) cls += 'booked';
+        else cls += 'available';
+        if (isToday) cls += ' today';
+        if (!isPast) cls += ' admin-clickable'; // reuse hover styling for any clickable day
+
+        cell.className = cls;
+
+        // Admin: show toggle hint
+        let dotHtml = '<div class="dot"></div>';
+        if (isAdminLoggedIn && !isPast) {
+          dotHtml = `<div style="font-size:8px;color:${isBooked?'#B83232':'#3A7D44'};margin-top:1px;">${isBooked?'✕':'✓'}</div>`;
+        }
+        cell.innerHTML = `<span>${d}</span>${dotHtml}`;
+
+        if (isAdminLoggedIn && !isPast) {
+          cell.title = isBooked ? 'Click to view / cancel this booking' : 'Click to manually block this date';
+          cell.addEventListener('click', () => toggleDate(dateStr));
+        } else if (!isPast && !isBooked) {
+          cell.title = currentLang === 'ta' ? 'முன்பதிவு செய்ய கிளிக் செய்யவும்' : 'Click to book this date';
+          cell.addEventListener('click', () => openBooking(dateStr));
+        } else {
+          cell.title = isBooked
+            ? (currentLang === 'ta' ? 'முன்பதிவு செய்யப்பட்டது' : 'Booked')
+            : '';
+        }
+        grid.appendChild(cell);
+      }
+    }
+
+    function toDateStr(y, m, d) {
+      return y + '-' + String(m + 1).padStart(2,'0') + '-' + String(d).padStart(2,'0');
+    }
+
+    /* ══════════════════════════════════
+       BOOKING WIZARD
+       ══════════════════════════════════ */
+    let currentBookingResult = null;
+
+    function openBooking(dateStr) {
+      selectedBookingDate = dateStr;
+      document.getElementById('bk-name').value = '';
+      document.getElementById('bk-email').value = '';
+      document.getElementById('bk-mobile').value = '';
+      document.getElementById('bk-date').value = dateStr;
+      document.getElementById('bk-date').min = new Date().toISOString().slice(0, 10);
+      document.getElementById('bk-purpose').value = '';
+      document.getElementById('bk-step1-alert').classList.remove('show');
+      goToStep(1);
+      document.getElementById('bk-overlay').classList.add('open');
+    }
+
+    function closeBooking() {
+      document.getElementById('bk-overlay').classList.remove('open');
+    }
+
+    function goToStep(n) {
+      for (let i = 1; i <= 4; i++) {
+        document.getElementById('bk-step-' + i).style.display = (i === n) ? 'block' : 'none';
+        document.getElementById('bk-dot-' + i).classList.toggle('active', i <= n);
+      }
+    }
+
+    function goToReview() {
+      const name = document.getElementById('bk-name').value.trim();
+      const email = document.getElementById('bk-email').value.trim();
+      const mobile = document.getElementById('bk-mobile').value.trim();
+      const date = document.getElementById('bk-date').value;
+      const purpose = document.getElementById('bk-purpose').value;
+      const alertBox = document.getElementById('bk-step1-alert');
+
+      if (!name) return showStep1Error('Please enter your full name.');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showStep1Error('Please enter a valid email address.');
+      if (!/^\d{10}$/.test(mobile)) return showStep1Error('Please enter a valid 10-digit mobile number.');
+      if (!date) return showStep1Error('Please select a date.');
+      if (bookedDates.has(date)) return showStep1Error('This date is already booked. Please pick another.');
+      if (!purpose) return showStep1Error('Please select a purpose.');
+
+      alertBox.classList.remove('show');
+      selectedBookingDate = date;
+
+      document.getElementById('rv-name').textContent = name;
+      document.getElementById('rv-email').textContent = email;
+      document.getElementById('rv-mobile').textContent = mobile;
+      document.getElementById('rv-date').textContent = formatDateNice(date);
+      document.getElementById('rv-purpose').textContent = purpose;
+
+      goToStep(2);
+    }
+
+    function showStep1Error(msg) {
+      const alertBox = document.getElementById('bk-step1-alert');
+      alertBox.textContent = '⚠ ' + msg;
+      alertBox.classList.add('show');
+    }
+
+    function goToPayment() {
+      document.getElementById('bk-step3-alert').classList.remove('show');
+      goToStep(3);
+    }
+
+    async function confirmPayment() {
+      const btn = document.getElementById('bk-pay-confirm-btn');
+      const alertBox = document.getElementById('bk-step3-alert');
+      alertBox.classList.remove('show');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="bk-spinner"></span> Confirming...';
+
+      const payload = {
+        name: document.getElementById('bk-name').value.trim(),
+        email: document.getElementById('bk-email').value.trim(),
+        mobile: document.getElementById('bk-mobile').value.trim(),
+        date: document.getElementById('bk-date').value,
+        purpose: document.getElementById('bk-purpose').value,
+      };
+
+      try {
+        const res = await fetch('/api/bookings', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const data = await res.json();
+
+        if (!res.ok) {
+          alertBox.textContent = '⚠ ' + (data.error || 'Booking failed. Please try again.');
+          alertBox.classList.add('show');
+          btn.disabled = false;
+          btn.innerHTML = 'I Have Paid — Confirm Booking';
+          if (res.status === 409) { await loadBookedDates(); } // refresh calendar, date got taken
+          return;
+        }
+
+        currentBookingResult = data.booking;
+        bookedDates.add(data.booking.event_date);
+        renderCalendar();
+        populateReceipt(data.booking);
+        goToStep(4);
+      } catch (e) {
+        alertBox.textContent = '⚠ Network error. Please check your connection and try again.';
+        alertBox.classList.add('show');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = 'I Have Paid — Confirm Booking';
+      }
+    }
+
+    function populateReceipt(b) {
+      document.getElementById('rc-receipt-no').textContent = b.receipt_no;
+      document.getElementById('rc-name').textContent = b.name;
+      document.getElementById('rc-mobile').textContent = b.mobile;
+      document.getElementById('rc-email').textContent = b.email;
+      document.getElementById('rc-date').textContent = formatDateNice(b.event_date);
+      document.getElementById('rc-purpose').textContent = b.purpose;
+      document.getElementById('rc-created').textContent = new Date(b.created_at).toLocaleString('en-IN');
+    }
+
+    function formatDateNice(dateStr) {
+      const d = new Date(dateStr + 'T00:00:00');
+      return d.toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+
+    async function downloadReceipt() {
+      const receiptEl = document.getElementById('bk-receipt');
+      const canvas = await html2canvas(receiptEl, { scale: 2, backgroundColor: '#FAF6EF' });
+      const imgData = canvas.toDataURL('image/png');
+      const { jsPDF } = window.jspdf;
+      const pdf = new jsPDF({ orientation: 'portrait', unit: 'pt', format: 'a5' });
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const imgWidth = pageWidth - 40;
+      const imgHeight = (canvas.height / canvas.width) * imgWidth;
+      pdf.addImage(imgData, 'PNG', 20, 20, imgWidth, imgHeight);
+      const receiptNo = currentBookingResult ? currentBookingResult.receipt_no : 'receipt';
+      pdf.save(`VRM-Receipt-${receiptNo}.pdf`);
+    }
+
+    // Init
+    loadBookedDates();
+  </script>
+</body>
+</html>
